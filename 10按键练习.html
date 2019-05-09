@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			#box1 {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var box1 = document.getElementById('box1');
+				var timer;
+				var speed = 10;
+				var dir = 0;
+				
+				//消除第一下到第二下之间的短暂停留
+				timer = setInterval(function() {
+						switch(dir) {
+							//左键 ---37 
+							case 37:
+								box1.style.left = (box1.offsetLeft - speed) + "px";
+								break;
+								//上键 ---38
+							case 38:
+								box1.style.top = (box1.offsetTop - speed) + "px";
+								break;
+								//右键 ---39
+							case 39:
+								box1.style.left = (box1.offsetLeft + speed) + "px";
+								break;
+								//下键 ---40
+							case 40:
+								box1.style.top = (box1.offsetTop + speed) + "px";
+								break;
+
+						}
+					}, 20);
+
+				document.onkeydown = function(e) {
+
+//					clearInterval(timer);
+					e = e || window.e;
+					// console.log(e.keyCode);
+					dir = e.keyCode;
+					
+					/*timer = setInterval(function() {
+						switch(e.keyCode) {
+							//左键 ---37 
+							case 37:
+								box1.style.left = (box1.offsetLeft - speed) + "px";
+								break;
+								//上键 ---38
+							case 38:
+								box1.style.top = (box1.offsetTop - speed) + "px";
+								break;
+								//右键 ---39
+							case 39:
+								box1.style.left = (box1.offsetLeft + speed) + "px";
+								break;
+								//下键 ---40
+							case 40:
+								box1.style.top = (box1.offsetTop + speed) + "px";
+								break;
+
+						}
+					}, 20); 第一种  */
+				}
+
+				document.onkeyup = function() {
+//					clearInterval(timer);  第一种
+					dir = 0;
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="box1"></div>
+	</body>
+
+</html>
